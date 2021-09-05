@@ -1,0 +1,52 @@
+.header {
+    height: 70px;
+    padding: 0px 20px;
+  
+    // Inpired by Gods Unchained
+    background-color: var(--unchained-bg);
+    border-bottom: 1px solid rgb(29, 47, 65);
+  
+    // Alignment
+    display: flex;
+    justify-content: space-between;
+    -webkit-box-pack: justify;
+    align-items: center;
+  
+    > div {
+      width: auto;
+      flex: 1 1 50%;
+      display: flex;
+      align-items: center;
+    }
+  }
+  
+  .header__auth {
+    justify-content: flex-end;
+  
+    > button {
+      padding: 10px 20px;
+      border: 2px solid var(--unchained-gold);
+      border-radius: 25px;
+      background-color: transparent;
+      color: white;
+      font-weight: bold;
+      transition: ease 100ms;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: var(--unchained-gold);
+        color: black;
+        border-color: #9e7f40;
+      }
+    }
+  }
+  
+  .disclaimer {
+    font-size: 14px;
+    color: rgb(76, 121, 167);
+    max-width: 900px;
+    text-align: center;
+    padding: 0px 20px;
+    margin: 10px auto 40px auto;
+    line-height: 150%;
+  }
