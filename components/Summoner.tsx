@@ -4,12 +4,14 @@ import Link from "next/link"; // Routing
 import { default as NextHead } from "next/head"; // Head
 import styles from "@styles/components/Summoner.module.scss"; // Layout styles
 import { useEffect, useState } from "react";
+import { Web3Provider } from "@ethersproject/providers"; // Providers
+
 
 import type { ReactElement } from "react";
 export default function Summoner(): ReactElement {
 
-    const { address, unlock }: { address: string | null; unlock: Function } = eth.useContainer();
-
+    const { provider, address, unlock } = eth.useContainer();
+    
     //Local Provider
     const [buttonLoading, setButtonLoading] = useState<boolean>(false); // Button loading
     // const { data, loading, error, collect } = useWallet(address);
