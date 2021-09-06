@@ -1,4 +1,4 @@
-import eth from "../state/eth"; // Network state
+import eth from "@state/eth"; // Network state
 import Link from "next/link"; // Routing
 import { default as NextHead } from "next/head"; // Head
 import styles from "@styles/components/Layout.module.scss"; // Layout styles
@@ -32,16 +32,15 @@ function Head(): ReactElement {
 
       {/* Meta: OG + Facebook */}
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://lootloose.com/" />
-      <meta property="og:title" content="LootLoose — Unbundle Loot Items" />
+      <meta property="og:url" content="localhost:3000" />
+      <meta property="og:title" content="Rarity - let's go on an adventure" />
       <meta
         property="og:description"
-        content="LootLoose lets you unbundle your Loot Bags into individual item NFTs
-          or rebundle items into their original Loot Bags."
+        content="Rarity lets you play the damn game w/o being super shady coder."
       />
       <meta property="og:image" content="https://lootloose.com/meta.png" />
 
-      {/* Meta: Twitter */}
+      {/* Meta: Twitter
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content="https://lootloose.com" />
       <meta
@@ -55,8 +54,10 @@ function Head(): ReactElement {
       />
       <meta property="twitter:image" content="https://lootloose.com/meta.png" />
 
-      {/* Favicon */}
-      <link rel="shortcut icon" href="/favicon.ico" />
+      {/* Favicon }
+      <link rel="shortcut icon" href="/favicon.ico" /> 
+      */
+      }
 
       {/* Fonts */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
