@@ -23,7 +23,7 @@ function useETH(){
         // Onboard provider
         return Onboard({
           // Ethereum network
-          networkId: 1,
+          networkId: 250,
           // Hide Blocknative branding
           hideBranding: true,
           // Dark mode
@@ -51,7 +51,7 @@ function useETH(){
               if (wallet.provider) {
                 // Collect ethers provider
                 const provider = new ethers.providers.Web3Provider(wallet.provider);
-    
+                console.log(provider.getSigner());
                 // Update provider, address, and raw address
                 setProvider(provider);
               } else {

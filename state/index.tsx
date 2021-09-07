@@ -1,6 +1,6 @@
 // Imports
 import eth from "@state/eth"; // ETH state provider
-// import loot from "@state/loot"; // Loot state provider
+import summoner from "@state/summoner"; // Loot state provider
 
 // Types
 import type { ReactElement } from "react";
@@ -13,8 +13,8 @@ export default function GlobalProvider({
 }): ReactElement {
   return (
     <eth.Provider>
-      {/* <loot.Provider>{children}</loot.Provider> */}
-      <div>{children}</div>
+      <summoner.Provider>{children}</summoner.Provider>
+      {/* <div>{children}</div> */}
     </eth.Provider>
   );
 }
