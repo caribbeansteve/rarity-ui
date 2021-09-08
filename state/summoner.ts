@@ -4,10 +4,16 @@ import { createContainer } from "unstated-next"; // State management
 import { Contract } from "@ethersproject/contracts"; // Ethers
 import { rarity_Contract } from "@utils/abi";
 import { useState } from "react";
-import { ethers } from "ethers";
+import { ethers, BigNumber } from "ethers";
 
 const rarityAddress : string = "0xce761D788DF608BD21bdd59d6f4B54b2e27F25Bb";
 
+export type raritySummoner = {
+    _xp : BigNumber,
+    _class : BigNumber,
+    _level : BigNumber,
+    _log : BigNumber
+};
 
 function useRarity() {
     const {provider, address, setAddress } = eth.useContainer();
@@ -26,7 +32,7 @@ function useRarity() {
             }
             const tx = await rarity["summoner(uint256)"] ( id );
             // await tx.wait(1);
-            console.log(tx);
+            return tx;
 
         } catch (e) {
             console.error(e);

@@ -1,14 +1,10 @@
-import eth from "../state/eth"; // Network state
-import Link from "next/link"; // Routing
-// import useWallet from "@hooks/useWallet"; // Loot by wallet
-import { default as NextHead } from "next/head"; // Head
+import eth from "@state/eth"; // Network state
 import styles from "@styles/components/Summoner.module.scss"; // Layout styles
-import { useEffect, useState } from "react";
-import { Web3Provider } from "@ethersproject/providers"; // Providers
 import summoner from "@state/summoner"
-import * as React from 'react';
+import { FormEvent, ReactElement, useState } from "react";
+import { BigNumber } from "@ethersproject/bignumber";
 
-import type { ReactElement } from "react";
+
 export default function Summoner(): ReactElement {
 
     const { provider, address, unlock } = eth.useContainer();
@@ -17,13 +13,25 @@ export default function Summoner(): ReactElement {
     const [buttonLoading, setButtonLoading] = useState<boolean>(false); // Button loading
     const [load, setLoaded] = useState<boolean>(false);
     const[id, setId] = useState<string>("");
+    const[_class, setClass] = useState<string>("");
+    const[_level, setLevel] = useState<string>("");
     const { loadSummoner } = summoner.useContainer();
     
-    const handleSubmit = async (e : Event ) => {
+    const handleSubmit = async ( e : FormEvent<HTMLFormElement>) => {
         e.preventDefault(); 
-        console.log(e.target.name.value);
-        const summoner = loadSummoner(e.target.name.value);
-        setId(summoner["_xp"]);
+        const target = e.target as typeof e.target & {
+            name : { value : string}
+        };
+        const summoner = loadSummoner(target.name.value).then((s) => {
+            const currSummoner = s as typeof s & {
+                _xp : BigNumber,
+                _class : BigNumber,
+                _level : BigNumber,
+                _log : BigNumber
+            };
+            console.log(currSummoner);
+            setId(target.name.value);
+        });
     }
 
     return (
