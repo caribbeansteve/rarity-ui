@@ -24,6 +24,17 @@ function useRarity() {
         };
     }
 
+    async function getClass(id: string) : Promise<string> {
+        const { rarity } : { rarity : Contract } = collectContracts();
+        try { 
+            const tx = await rarity["classes(uint256)"]( id );
+            return tx;
+        } catch (e) {
+            console.log(e);
+            return "";
+        }
+    }
+
     async function loadSummoner(id : string) : Promise<void> {
         const { rarity } : { rarity : Contract } = collectContracts();
         try {
@@ -33,7 +44,6 @@ function useRarity() {
             const tx = await rarity["summoner(uint256)"] ( id );
             // await tx.wait(1);
             return tx;
-
         } catch (e) {
             console.error(e);
             toast.error(`Error when loading Summoner #${id}`);
@@ -42,6 +52,7 @@ function useRarity() {
 
     return {
         loadSummoner,
+        getClass,
     };
 }
 

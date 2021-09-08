@@ -15,14 +15,19 @@ export default function Summoner(): ReactElement {
     const[id, setId] = useState<string>("");
     const[_class, setClass] = useState<string>("");
     const[_level, setLevel] = useState<string>("");
-    const { loadSummoner } = summoner.useContainer();
+    const { loadSummoner, getClass } = summoner.useContainer();
+
+    function convertClass(num : BigNumber) {
+        console.log(num.toString())
+        return num.toString();
+    }
     
     const handleSubmit = async ( e : FormEvent<HTMLFormElement>) => {
         e.preventDefault(); 
         const target = e.target as typeof e.target & {
             name : { value : string}
         };
-        const summoner = loadSummoner(target.name.value).then((s) => {
+        loadSummoner(target.name.value).then((s) => {
             const currSummoner = s as typeof s & {
                 _xp : BigNumber,
                 _class : BigNumber,
@@ -30,6 +35,12 @@ export default function Summoner(): ReactElement {
                 _log : BigNumber
             };
             console.log(currSummoner);
+            getClass(currSummoner["_class"].toString()).then((s) => {
+                const className = s as string;
+                if(s !== "") {
+                    setClass(className);
+                }
+            });
             setId(target.name.value);
         });
     }
